@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Image Search</string>
+
+    <string name="menu_title_search">Search</string>
+    <string name="hint_search_query">Search Images..</string>
+
+    <string name="message_no_results">No results found</string>
+    <string name="message_error">Service unavailable</string>
+    <string name="message_retry">SEARCH AGAIN</string>
+</resources>
