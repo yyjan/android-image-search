@@ -1,7 +1,6 @@
 package com.example.yun.androidimagesearch.presentation.search;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.yun.androidimagesearch.data.SearchDataRepository;
 import com.example.yun.androidimagesearch.domain.model.ResponseData;
@@ -13,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class SearchListPresenter implements SearchListContract.Presenter {
@@ -47,7 +45,10 @@ public class SearchListPresenter implements SearchListContract.Presenter {
     public void observeSearchView(Observable<CharSequence> observable) {
         compositeDisposable.add(observable
                 .debounce(1000, TimeUnit.MILLISECONDS)
-                .filter(charSequence -> !TextUtils.isEmpty((CharSequence) charSequence))
+                .filter(charSequence -> {
+                    // check empty string
+                    return !TextUtils.isEmpty(charSequence) && !TextUtils.isEmpty(charSequence.toString().trim());
+                })
                 .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(charSequence -> {

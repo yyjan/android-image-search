@@ -9,7 +9,7 @@ import io.reactivex.Observable;
 
 public class SearchDataRepository implements SearchDataRepositoryImpl {
 
-    private static final int DEFAULT_ITEM_SIZE = 30;
+    private static final int DEFAULT_ITEM_SIZE = 20;
 
     private static final String DEFAULT_QUERY = "";
 

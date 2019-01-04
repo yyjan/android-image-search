@@ -44,7 +44,7 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 tools:text="2017-06-21T15:59:30.000+09:00" />
 

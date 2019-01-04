@@ -50,7 +50,7 @@ public class SearchListActivity extends AppCompatActivity implements SearchListC
         // set adapter
         adapter = new SearchImageListAdapter();
         linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -114,16 +114,16 @@ public class SearchListActivity extends AppCompatActivity implements SearchListC
     public void showError() {
         makeSnackBar(getString(R.string.message_error));
 
-        recyclerView.setVisibility(View.GONE);
-        messageLayout.setVisibility(View.VISIBLE);
+        // show message layout
+        setUpMessageLayout(true);
     }
 
     @Override
     public void showNoResults() {
         makeSnackBar(getString(R.string.message_no_results));
 
-        recyclerView.setVisibility(View.GONE);
-        messageLayout.setVisibility(View.VISIBLE);
+        // show message layout
+        setUpMessageLayout(true);
     }
 
     @Override
@@ -155,8 +155,8 @@ public class SearchListActivity extends AppCompatActivity implements SearchListC
         adapter.addItems(items);
         adapter.notifyDataSetChanged();
 
-        recyclerView.setVisibility(View.VISIBLE);
-        messageLayout.setVisibility(View.GONE);
+        // hide message layout
+        setUpMessageLayout(false);
     }
 
     @Override
@@ -172,5 +172,14 @@ public class SearchListActivity extends AppCompatActivity implements SearchListC
         snackbar.show();
     }
 
+    private void setUpMessageLayout(Boolean isShow) {
+        if (isShow) {
+            recyclerView.setVisibility(View.GONE);
+            messageLayout.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            messageLayout.setVisibility(View.GONE);
+        }
+    }
 
 }
